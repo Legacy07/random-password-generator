@@ -3,7 +3,9 @@
     <ion-title>
       <ion-label>Categories</ion-label>
       <ion-button fill="clear" color="dark" (click)="closeModal()" class="ion-float-right ion-no-margin" style="margin-top: -5px;">
-        <ion-icon name="close-outline"></ion-icon>
+        <ion-icon  *ngIf="!selectedAllCategories()" name="close-outline"></ion-icon>
+        <ion-icon *ngIf="selectedAllCategories()" name="checkmark-outline"></ion-icon>
+
       </ion-button>
     </ion-title>
   </ion-toolbar>

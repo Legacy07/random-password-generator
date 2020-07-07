@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { ModalController, ToastController, AlertController } from "@ionic/angular";
-import { LoggerService } from '../logger.service';
+import {
+  ModalController,
+  ToastController,
+  AlertController,
+} from "@ionic/angular";
+import { LoggerService } from "../logger.service";
 
 @Component({
   selector: "app-select-category",
@@ -67,7 +71,7 @@ export class SelectCategoryComponent implements OnInit {
   }
 
   public closeModal(): void {
-    if (this.selectedCategories.length === this.numberOfCategories) {
+    if (this.selectedAllCategories()) {
       this.dismissModal();
     } else {
       this.alertForBackingOut();
@@ -80,21 +84,26 @@ export class SelectCategoryComponent implements OnInit {
     });
   }
 
+  public selectedAllCategories(): boolean {
+    return this.selectedCategories.length === this.numberOfCategories;
+  }
+
   async alertForBackingOut() {
     const alert = await this.alertController.create({
       header: "Backing out",
-      message: "You havent picked all your categories, are you sure you want to go back?",
+      message:
+        "You havent picked all your categories, are you sure you want to go back?",
       buttons: [
         {
-          text: 'Yes',
+          text: "Yes",
           handler: () => {
             this.dismissModal();
-          }
+          },
         },
         {
-          text: 'Cancel',
-          role: 'cancel'
-        }
+          text: "Cancel",
+          role: "cancel",
+        },
       ],
     });
 
