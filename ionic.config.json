@@ -1,0 +1,7 @@
+{
+  "name": "random-password-generator",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
