@@ -1,10 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  ModalController,
-  ToastController,
-  AlertController,
-} from "@ionic/angular";
-import { LoggerService } from "../logger.service";
+import { Component, OnInit, Input } from "@angular/core";
+import { ModalController, AlertController } from "@ionic/angular";
 
 @Component({
   selector: "app-select-category",
@@ -13,17 +8,18 @@ import { LoggerService } from "../logger.service";
 })
 export class SelectCategoryComponent implements OnInit {
   public categories: Array<string>;
-  public selectedCategories: Array<string>;
+  @Input() selectedCategories: Array<string>;
+  @Input() numberOfCategories: number;
 
-  public numberOfCategories = 4;
+  public currentSelectedCategories: Array<string>;
 
   constructor(
     private modalController: ModalController,
     private alertController: AlertController
   ) {
-    this.categories = new Array<string>();
-    this.selectedCategories = new Array<string>();
+  }
 
+  ngOnInit() {
     this.categories = [
       "Technology",
       "Science",
@@ -48,9 +44,9 @@ export class SelectCategoryComponent implements OnInit {
       "Places",
       "Books",
     ];
-  }
 
-  ngOnInit() {}
+    this.currentSelectedCategories = JSON.parse(JSON.stringify(this.selectedCategories));
+  }
 
   public isSelectedCategory(category: string): boolean {
     return this.selectedCategories.includes(category);
@@ -81,11 +77,12 @@ export class SelectCategoryComponent implements OnInit {
   public dismissModal(): void {
     this.modalController.dismiss({
       dismissed: true,
+      selectedCategories: this.selectedCategories
     });
   }
 
   public selectedAllCategories(): boolean {
-    return this.selectedCategories.length === this.numberOfCategories;
+    return this.selectedCategories.length == this.numberOfCategories;
   }
 
   async alertForBackingOut() {
@@ -97,6 +94,7 @@ export class SelectCategoryComponent implements OnInit {
         {
           text: "Yes",
           handler: () => {
+            this.selectedCategories = this.currentSelectedCategories;
             this.dismissModal();
           },
         },

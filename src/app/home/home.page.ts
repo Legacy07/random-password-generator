@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { AlertController, ModalController } from "@ionic/angular";
-import { SelectCategoryComponent } from '../select-category/select-category.component';
+import { SelectCategoryComponent } from "../select-category/select-category.component";
 
 @Component({
   selector: "app-home",
@@ -9,13 +9,18 @@ import { SelectCategoryComponent } from '../select-category/select-category.comp
 })
 export class HomePage {
   public selectedCategories: Array<string>;
+  public selectedNumberOfWords: any;
   public generated: boolean;
 
   constructor(
     private alertController: AlertController,
     private modalController: ModalController
   ) {
-    this.selectedCategories = ["Science", "Technology", "Nature"];
+  }
+
+  ngOnInit(): void {
+    this.selectedCategories = new Array<string>();
+    this.selectedNumberOfWords = '4';    
   }
 
   async showCategoryInfoAlert() {
@@ -33,8 +38,18 @@ export class HomePage {
     const modal = await this.modalController.create({
       component: SelectCategoryComponent,
       componentProps: {
-      }
+        selectedCategories: this.selectedCategories,
+        numberOfCategories: this.selectedNumberOfWords
+      },
     });
-    return await modal.present();
+
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    this.selectedCategories = data['selectedCategories'];
+  }
+
+  public generatePassword() {
+
   }
 }

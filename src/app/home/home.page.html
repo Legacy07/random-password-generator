@@ -13,10 +13,10 @@
       <ion-col>
         <ion-item>
           <ion-label>Number of words</ion-label>
-          <ion-select okText="Select" cancelText="Dismiss" value="four">
-            <ion-select-option value="three">3</ion-select-option>
-            <ion-select-option value="four">4</ion-select-option>
-            <ion-select-option value="five">5</ion-select-option>
+          <ion-select okText="Select" cancelText="Cancel" [(ngModel)]="selectedNumberOfWords">
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
