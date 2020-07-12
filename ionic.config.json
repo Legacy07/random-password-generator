@@ -1,7 +1,8 @@
 {
   "name": "random-password-generator",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
