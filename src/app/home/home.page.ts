@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { AlertController, ModalController } from "@ionic/angular";
 import { SelectCategoryComponent } from "../select-category/select-category.component";
+import { GeneratePasswordService } from '../generate-password.service';
 
 @Component({
   selector: "app-home",
@@ -12,9 +13,13 @@ export class HomePage {
   public selectedNumberOfWords: any;
   public generated: boolean;
 
+  public generatedPassword = "";
+  public chosenWords: {};
+
   constructor(
     private alertController: AlertController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private generatePasswordService: GeneratePasswordService
   ) {
   }
 
@@ -50,6 +55,30 @@ export class HomePage {
   }
 
   public generatePassword() {
+    this.chosenWords = this.generatePasswordService.generateRandomPasswordByChosenCategories(this.selectedCategories);
 
+    this.generated = true;
+
+    for (var key of Object.keys(this.chosenWords)) {
+      this.generatedPassword = this.generatedPassword + this.makePassword(this.chosenWords[key]);
+    }
+  }
+
+  public refreshWord(category: string, word: string) {
+    var chosenWord = this.generatePasswordService.generateRandomPasswordByChosenCategories([category]);
+    var replaceWord = chosenWord[category];
+    var replacePassword = this.makePassword(replaceWord);
+
+    this.generatedPassword = this.generatedPassword.replace(this.makePassword(word), replacePassword);
+
+    for (var key of Object.keys(this.chosenWords)) {
+      if (key === category) {
+        this.chosenWords[key] = replaceWord;
+      }
+    }
+  }
+
+  private makePassword(word: string) : string {
+    return word.toLowerCase().replace(/ /g, '');
   }
 }

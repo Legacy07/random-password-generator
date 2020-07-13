@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ModalController, AlertController } from "@ionic/angular";
+import { GeneratePasswordService } from '../generate-password.service';
 
 @Component({
   selector: "app-select-category",
@@ -15,7 +16,7 @@ export class SelectCategoryComponent implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private alertController: AlertController
+    private alertController: AlertController,
   ) {
   }
 
