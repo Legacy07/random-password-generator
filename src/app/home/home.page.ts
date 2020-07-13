@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { AlertController, ModalController } from "@ionic/angular";
 import { SelectCategoryComponent } from "../select-category/select-category.component";
-import { GeneratePasswordService } from '../generate-password.service';
+import { GeneratePasswordService } from "../generate-password.service";
 
 @Component({
   selector: "app-home",
@@ -20,12 +20,11 @@ export class HomePage {
     private alertController: AlertController,
     private modalController: ModalController,
     private generatePasswordService: GeneratePasswordService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.selectedCategories = new Array<string>();
-    this.selectedNumberOfWords = '4';    
+    this.selectedNumberOfWords = "4";
   }
 
   async showCategoryInfoAlert() {
@@ -44,32 +43,40 @@ export class HomePage {
       component: SelectCategoryComponent,
       componentProps: {
         selectedCategories: this.selectedCategories,
-        numberOfCategories: this.selectedNumberOfWords
+        numberOfCategories: this.selectedNumberOfWords,
       },
     });
 
     await modal.present();
 
     const { data } = await modal.onWillDismiss();
-    this.selectedCategories = data['selectedCategories'];
+    this.selectedCategories = data["selectedCategories"];
   }
 
   public generatePassword() {
-    this.chosenWords = this.generatePasswordService.generateRandomPasswordByChosenCategories(this.selectedCategories);
+    this.chosenWords = this.generatePasswordService.generateRandomPasswordByChosenCategories(
+      this.selectedCategories
+    );
 
     this.generated = true;
 
     for (var key of Object.keys(this.chosenWords)) {
-      this.generatedPassword = this.generatedPassword + this.makePassword(this.chosenWords[key]);
+      this.generatedPassword =
+        this.makePassword(this.chosenWords[key]) + this.generatedPassword;
     }
   }
 
   public refreshWord(category: string, word: string) {
-    var chosenWord = this.generatePasswordService.generateRandomPasswordByChosenCategories([category]);
+    var chosenWord = this.generatePasswordService.generateRandomPasswordByChosenCategories(
+      [category]
+    );
     var replaceWord = chosenWord[category];
     var replacePassword = this.makePassword(replaceWord);
 
-    this.generatedPassword = this.generatedPassword.replace(this.makePassword(word), replacePassword);
+    this.generatedPassword = this.generatedPassword.replace(
+      this.makePassword(word),
+      replacePassword
+    );
 
     for (var key of Object.keys(this.chosenWords)) {
       if (key === category) {
@@ -78,7 +85,15 @@ export class HomePage {
     }
   }
 
-  private makePassword(word: string) : string {
-    return word.toLowerCase().replace(/ /g, '');
+  private makePassword(word: string): string {
+    return word.toLowerCase().replace(/ /g, "");
+  }
+
+  public copyToClickboard() {
+    // https://ionicframework.com/docs/native/clipboard
+  }
+
+  public share() {
+    // https://ionicframework.com/docs/native/social-sharing
   }
 }
