@@ -58,6 +58,8 @@ export class HomePage {
   }
 
   public generatePassword() {
+    this.generatedPassword = "";
+
     this.chosenWords = this.generatePasswordService.generateRandomPasswordByChosenCategories(
       this.selectedCategories
     );
@@ -100,6 +102,6 @@ export class HomePage {
   }
 
   public share() {
-    // https://ionicframework.com/docs/native/social-sharing
+    
   }
 }
