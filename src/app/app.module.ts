@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { Clipboard } from '@ionic-native/clipboard/ngx';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Clipboard
+    Clipboard,
+    SocialSharing
   ],
   bootstrap: [AppComponent]
 })

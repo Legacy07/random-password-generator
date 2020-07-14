@@ -2,8 +2,9 @@ import { Component } from "@angular/core";
 import { AlertController, ModalController } from "@ionic/angular";
 import { SelectCategoryComponent } from "../select-category/select-category.component";
 import { GeneratePasswordService } from "../generate-password.service";
-import { Clipboard } from '@ionic-native/clipboard/ngx';
-import { LoggerService } from '../logger.service';
+import { Clipboard } from "@ionic-native/clipboard/ngx";
+import { LoggerService } from "../logger.service";
+import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 
 @Component({
   selector: "app-home",
@@ -23,7 +24,8 @@ export class HomePage {
     private modalController: ModalController,
     private generatePasswordService: GeneratePasswordService,
     private clipboard: Clipboard,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private socialSharing: SocialSharing
   ) {}
 
   ngOnInit(): void {
@@ -95,13 +97,25 @@ export class HomePage {
     return word.toLowerCase().replace(/ /g, "");
   }
 
-  public copyToClipboard() {
+  public async copyToClipboard() {
     this.clipboard.copy(this.generatedPassword).then(() => {
       this.loggerService.info("Copied password to clipboard!");
-    })
+    }).catch(() => {
+      this.loggerService.error("Unable to copy to clipboard!")
+    });
   }
 
-  public share() {
-    
+  public async shareEmail() {
+    // create encrypted txt file that can be opened by the generated password
+    this.socialSharing.canShareViaEmail().then(() => {
+      this.socialSharing
+        .shareViaEmail("", "Random Generated Password", ["recipient@example.org"])
+        .then(() => {
+          this.loggerService.success("Sent email!");
+        })
+        .catch(() => {
+          this.loggerService.error("Unable to share");
+        });
+    });
   }
 }
