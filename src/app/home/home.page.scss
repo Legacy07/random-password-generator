@@ -1,3 +1,11 @@
-ion-chip {
-  --border-color: red($color: #000000);
+// ion-chip {
+//   --border-color: red($color: #000000);
+// }
+
+.settings-card {
+  background-color: var(--ion-color-tertiary);
+}
+
+.result-card {
+  background-color: var(--ion-color-secondary);
 }

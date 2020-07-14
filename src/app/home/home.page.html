@@ -1,5 +1,5 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header [translucent]="true" class="ion-text-center">
+  <ion-toolbar color="primary">
     <ion-title>
       Random Password Generator
     </ion-title>
@@ -8,10 +8,10 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-card>
+  <ion-card class="settings-card">
     <ion-row>
       <ion-col>
-        <ion-item>
+        <ion-item color="transparent" lines="none">
           <ion-label>Number of words</ion-label>
           <ion-select okText="Select" cancelText="Cancel" [(ngModel)]="selectedNumberOfWords">
             <ion-select-option value="2">2</ion-select-option>
@@ -25,13 +25,13 @@
 
     <ion-row>
       <ion-col>
-        <ion-item lines="none">
+        <ion-item lines="none" color="transparent">
           <ion-label>Select Categories</ion-label>
           <ion-icon (click)="showCategoryInfoAlert()" name="help-circle-outline"></ion-icon>
         </ion-item>
       </ion-col>
       <ion-col>
-        <ion-item lines="none" class="ion-float-right">
+        <ion-item lines="none" class="ion-float-right" color="transparent">
           <ion-button (click)="openSelectCategoryModal()">
             <ion-icon name="chevron-down-outline"></ion-icon>
           </ion-button>
@@ -50,14 +50,14 @@
     </ion-row>
   </ion-card>
 
-  <ion-card *ngIf="generated">
+  <ion-card class="result-card">
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-item lines="none">
+          <ion-item lines="none" color="transparent">
             <ion-label>Random chosen words</ion-label>
           </ion-item>
-          <ion-item lines="none">
+          <ion-item lines="none" color="transparent">
             <ion-list *ngFor="let word of chosenWords | keyvalue">
               <ion-col>
                 <ion-chip color="primary" (click)="refreshWord(word.key, word.value)">
@@ -72,10 +72,10 @@
 
       <ion-row>
         <ion-col>
-          <ion-item lines="none">
+          <ion-item lines="none" color="transparent">
             <ion-label>Random chosen words as a password</ion-label>
           </ion-item>
-          <ion-item lines="none">
+          <ion-item lines="none" color="transparent">
             <ion-label><b>{{generatedPassword}}</b></ion-label>
           </ion-item>
         </ion-col>
@@ -83,12 +83,12 @@
 
       <ion-row class="ion-float-right">
         <ion-col>
-          <ion-item lines="none" button (click)="copyToClipboard()">
+          <ion-item lines="none" button (click)="copyToClipboard()" color="transparent">
             <ion-icon name="copy-outline"></ion-icon>
           </ion-item>
         </ion-col>
         <ion-col>
-          <ion-item lines="none" button (click)="shareEmail()">
+          <ion-item lines="none" button (click)="shareEmail()" color="transparent">
             <ion-icon name="mail-outline"></ion-icon>
           </ion-item>
         </ion-col>
@@ -97,7 +97,7 @@
   </ion-card>
 </ion-content>
 
-<ion-footer>
+<ion-footer class="ion-no-border">
   <ion-button [disabled]="selectedCategories.length < 1" expand="block" (click)="generatePassword()">
     Generate
   </ion-button>
