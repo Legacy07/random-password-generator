@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { AlertController, ModalController } from "@ionic/angular";
 import { SelectCategoryComponent } from "../select-category/select-category.component";
 import { GeneratePasswordService } from "../generate-password.service";
+import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { LoggerService } from '../logger.service';
 
 @Component({
   selector: "app-home",
@@ -19,7 +21,9 @@ export class HomePage {
   constructor(
     private alertController: AlertController,
     private modalController: ModalController,
-    private generatePasswordService: GeneratePasswordService
+    private generatePasswordService: GeneratePasswordService,
+    private clipboard: Clipboard,
+    private loggerService: LoggerService
   ) {}
 
   ngOnInit(): void {
@@ -89,8 +93,10 @@ export class HomePage {
     return word.toLowerCase().replace(/ /g, "");
   }
 
-  public copyToClickboard() {
-    // https://ionicframework.com/docs/native/clipboard
+  public copyToClipboard() {
+    this.clipboard.copy(this.generatedPassword).then(() => {
+      this.loggerService.info("Copied password to clipboard!");
+    })
   }
 
   public share() {

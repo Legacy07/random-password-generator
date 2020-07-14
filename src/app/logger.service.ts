@@ -24,4 +24,13 @@ export class LoggerService {
     });
     toast.present();
   }
+
+  public async info(msg: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+      color: "dark",
+    });
+    toast.present();
+  }
 }
