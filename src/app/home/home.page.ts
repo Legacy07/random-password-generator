@@ -100,8 +100,8 @@ export class HomePage {
   public async copyToClipboard() {
     this.clipboard.copy(this.generatedPassword).then(() => {
       this.loggerService.info("Copied password to clipboard!");
-    }).catch(() => {
-      this.loggerService.error("Unable to copy to clipboard!")
+    }).catch((res) => {
+      this.loggerService.error("Unable to copy to clipboard! " + res)
     });
   }
 
@@ -113,8 +113,8 @@ export class HomePage {
         .then(() => {
           this.loggerService.success("Sent email!");
         })
-        .catch(() => {
-          this.loggerService.error("Unable to share");
+        .catch((res) => {
+          this.loggerService.error("Unable to share: " + res);
         });
     });
   }
