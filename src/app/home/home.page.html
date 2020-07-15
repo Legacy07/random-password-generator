@@ -39,9 +39,9 @@
         </ion-col>
       </ion-row>
 
-      <ion-row *ngIf="selectedCategories.length > 0">
+      <ion-row *ngIf="selectedCategories.length > 0" class="ion-margin-start">
         <ion-list *ngFor="let selectedCategory of selectedCategories" class="transparent">
-          <ion-chip color="tertiary">
+          <ion-chip color="dark">
             <ion-label>{{selectedCategory}}</ion-label>
           </ion-chip>
         </ion-list>
@@ -56,7 +56,7 @@
           <ion-label>Random chosen words</ion-label>
         </ion-item>
       </ion-row>
-      <ion-row>
+      <ion-row class="ion-margin-start">
         <ion-list *ngFor="let word of chosenWords | keyvalue" class="transparent">
           <ion-chip color="tertiary" (click)="refreshWord(word.key, word.value)">
             <ion-label>{{word.value}}</ion-label>

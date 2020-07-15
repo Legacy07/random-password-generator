@@ -13,7 +13,7 @@
 <ion-content>
   <ion-row class="ion-margin">
     <ion-list *ngFor="let category of categories">
-      <ion-chip outline color="dark" [color]="isSelectedCategory(category) ? 'success' : 'tertiary'" (click)="addToSelectedCategories(category)" [class.checked]="isSelectedCategory(category)">
+      <ion-chip [color]="isSelectedCategory(category) ? 'success' : 'light'" (click)="addToSelectedCategories(category)" [class.checked]="isSelectedCategory(category)">
         <ion-label>{{category}}</ion-label>
         <ion-icon name="checkmark-outline" *ngIf="isSelectedCategory(category)"></ion-icon>
       </ion-chip>
