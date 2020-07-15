@@ -7,67 +7,62 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <ion-card class="settings-card">
-    <ion-row>
-      <ion-col>
-        <ion-item color="transparent" lines="none">
-          <ion-label>Number of words</ion-label>
-          <ion-select okText="Select" cancelText="Cancel" [(ngModel)]="selectedNumberOfWords">
-            <ion-select-option value="2">2</ion-select-option>
-            <ion-select-option value="3">3</ion-select-option>
-            <ion-select-option value="4">4</ion-select-option>
-            <ion-select-option value="5">5</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <ion-item lines="none" color="transparent">
-          <ion-label>Select Categories</ion-label>
-          <ion-icon (click)="showCategoryInfoAlert()" name="help-circle-outline"></ion-icon>
-        </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item lines="none" class="ion-float-right" color="transparent">
-          <ion-button (click)="openSelectCategoryModal()">
-            <ion-icon name="chevron-down-outline"></ion-icon>
-          </ion-button>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="ion-justify-content-center">
-      <ion-list *ngFor="let selectedCategory of selectedCategories">
-        <ion-col>
-          <ion-chip color="primary">
-            <ion-label>{{selectedCategory}}</ion-label>
-          </ion-chip>
-        </ion-col>
-      </ion-list>
-    </ion-row>
-  </ion-card>
-
-  <ion-card *ngIf="generated" class="result-card">
+  <ion-card class="card-color">
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-item lines="none" color="transparent">
-            <ion-label>Random chosen words</ion-label>
-          </ion-item>
-          <ion-item lines="none" color="transparent">
-            <ion-list *ngFor="let word of chosenWords | keyvalue">
-              <ion-col>
-                <ion-chip color="primary" (click)="refreshWord(word.key, word.value)">
-                  <ion-label>{{word.value}}</ion-label>
-                  <ion-icon name="refresh-outline"></ion-icon>
-                </ion-chip>
-              </ion-col>
-            </ion-list>
+          <ion-item color="transparent" lines="none">
+            <ion-label>Number of words</ion-label>
+            <ion-select okText="Select" cancelText="Cancel" [(ngModel)]="selectedNumberOfWords">
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
           </ion-item>
         </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none" color="transparent">
+            <ion-label>Select Categories</ion-label>
+            <ion-icon (click)="showCategoryInfoAlert()" name="help-circle-outline"></ion-icon>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" class="ion-float-right" color="transparent">
+            <ion-button (click)="openSelectCategoryModal()">
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="selectedCategories.length > 0">
+        <ion-list *ngFor="let selectedCategory of selectedCategories" class="transparent">
+          <ion-chip color="tertiary">
+            <ion-label>{{selectedCategory}}</ion-label>
+          </ion-chip>
+        </ion-list>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card *ngIf="generated" class="card-color">
+    <ion-grid>
+      <ion-row>
+        <ion-item lines="none" color="transparent">
+          <ion-label>Random chosen words</ion-label>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-list *ngFor="let word of chosenWords | keyvalue" class="transparent">
+          <ion-chip color="tertiary" (click)="refreshWord(word.key, word.value)">
+            <ion-label>{{word.value}}</ion-label>
+            <ion-icon name="refresh-outline"></ion-icon>
+          </ion-chip>
+        </ion-list>
       </ion-row>
 
       <ion-row>

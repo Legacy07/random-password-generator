@@ -1,11 +1,10 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header [translucent]="true" class="ion-text-center">
+  <ion-toolbar color="primary">
     <ion-title>
-      <ion-label>Categories</ion-label>
-      <ion-button fill="clear" color="dark" (click)="closeModal()" class="ion-float-right ion-no-margin" style="margin-top: -5px;">
+      Categories
+      <ion-button fill="clear" color="light" (click)="closeModal()" class="ion-float-right ion-no-margin" style="margin-top: -5px;">
         <ion-icon  *ngIf="!selectedAllCategories()" name="close-outline"></ion-icon>
         <ion-icon *ngIf="selectedAllCategories()" name="checkmark-outline"></ion-icon>
-
       </ion-button>
     </ion-title>
   </ion-toolbar>
@@ -14,7 +13,7 @@
 <ion-content>
   <ion-row class="ion-margin">
     <ion-list *ngFor="let category of categories">
-      <ion-chip outline color="dark" [color]="isSelectedCategory(category) ? 'success' : 'dark'" (click)="addToSelectedCategories(category)" [class.checked]="isSelectedCategory(category)">
+      <ion-chip outline color="dark" [color]="isSelectedCategory(category) ? 'success' : 'tertiary'" (click)="addToSelectedCategories(category)" [class.checked]="isSelectedCategory(category)">
         <ion-label>{{category}}</ion-label>
         <ion-icon name="checkmark-outline" *ngIf="isSelectedCategory(category)"></ion-icon>
       </ion-chip>
