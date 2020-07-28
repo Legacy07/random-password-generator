@@ -30,7 +30,7 @@ export class HomePage {
 
   ngOnInit(): void {
     this.selectedCategories = new Array<string>();
-    this.selectedNumberOfWords = "2";
+    this.selectedNumberOfWords = "4";
   }
 
   async showCategoryInfoAlert() {
