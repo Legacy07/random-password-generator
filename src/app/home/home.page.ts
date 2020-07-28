@@ -30,7 +30,7 @@ export class HomePage {
 
   ngOnInit(): void {
     this.selectedCategories = new Array<string>();
-    this.selectedNumberOfWords = "4";
+    this.selectedNumberOfWords = "3";
   }
 
   async showCategoryInfoAlert() {
@@ -69,8 +69,7 @@ export class HomePage {
     this.generated = true;
 
     for (var key of Object.keys(this.chosenWords)) {
-      this.generatedPassword =
-        this.makePassword(this.chosenWords[key]) + this.generatedPassword;
+      this.generatedPassword = this.generatedPassword + this.makePassword(this.chosenWords[key]);
     }
   }
 
