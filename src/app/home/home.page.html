@@ -57,7 +57,7 @@
         </ion-item>
       </ion-row>
       <ion-row class="ion-margin-start">
-        <ion-list *ngFor="let word of chosenWords | keyvalue" class="transparent">
+        <ion-list *ngFor="let word of chosenWords | keyvalue: returnZero" class="transparent">
           <ion-chip color="tertiary" (click)="refreshWord(word.key, word.value)">
             <ion-label>{{word.value}}</ion-label>
             <ion-icon name="refresh-outline"></ion-icon>

@@ -17,7 +17,7 @@ export class HomePage {
   public generated: boolean;
 
   public generatedPassword = "";
-  public chosenWords: {};
+  public chosenWords: Map<any, any>;
 
   constructor(
     private alertController: AlertController,
@@ -68,16 +68,20 @@ export class HomePage {
 
     this.generated = true;
 
-    for (var key of Object.keys(this.chosenWords)) {
-      this.generatedPassword = this.generatedPassword + this.makePassword(this.chosenWords[key]);
+    for (var word of this.chosenWords) {
+      this.generatedPassword =
+        this.generatedPassword + this.makePassword(word[1]);
     }
   }
 
   public refreshWord(category: string, word: string) {
-    var chosenWord = this.generatePasswordService.generateRandomPasswordByChosenCategories(
-      [category]
-    );
-    var replaceWord = chosenWord[category];
+    var chosenWord: Map<
+      any,
+      any
+    > = this.generatePasswordService.generateRandomPasswordByChosenCategories([
+      category,
+    ]);
+    var replaceWord = chosenWord.get(category);
     var replacePassword = this.makePassword(replaceWord);
 
     this.generatedPassword = this.generatedPassword.replace(
@@ -85,9 +89,11 @@ export class HomePage {
       replacePassword
     );
 
-    for (var key of Object.keys(this.chosenWords)) {
-      if (key === category) {
-        this.chosenWords[key] = replaceWord;
+    for (var w of this.chosenWords.entries()) {
+      if (w[0] === category) {
+        this.chosenWords.delete(category);
+        this.chosenWords.set(category, replaceWord);
+        break;
       }
     }
   }
@@ -97,18 +103,23 @@ export class HomePage {
   }
 
   public async copyToClipboard() {
-    this.clipboard.copy(this.generatedPassword).then(() => {
-      this.loggerService.info("Copied password to clipboard!");
-    }).catch((res) => {
-      this.loggerService.error("Unable to copy to clipboard! " + res)
-    });
+    this.clipboard
+      .copy(this.generatedPassword)
+      .then(() => {
+        this.loggerService.info("Copied password to clipboard!");
+      })
+      .catch((res) => {
+        this.loggerService.error("Unable to copy to clipboard! " + res);
+      });
   }
 
   public async shareEmail() {
     // create encrypted txt file that can be opened by the generated password
     this.socialSharing.canShareViaEmail().then(() => {
       this.socialSharing
-        .shareViaEmail("", "Random Generated Password", ["recipient@example.org"])
+        .shareViaEmail("", "Random Generated Password", [
+          "recipient@example.org",
+        ])
         .then(() => {
           this.loggerService.success("Sent email!");
         })
@@ -116,5 +127,9 @@ export class HomePage {
           this.loggerService.error("Unable to share: " + res);
         });
     });
+  }
+  
+  returnZero() {
+    return 0;
   }
 }
