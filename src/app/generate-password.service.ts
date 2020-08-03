@@ -9,7 +9,7 @@ export class GeneratePasswordService {
   constructor(private databaseService: DatabaseService) { }
 
   public generateRandomPasswordByChosenCategories(chosenCategories: Array<string>) : {} {
-    var words = {};
+    var words = [];
 
     chosenCategories.forEach(category => {
       var categoryLength = this.databaseService.getCategoryLength(category);
