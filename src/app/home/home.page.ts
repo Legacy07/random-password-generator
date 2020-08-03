@@ -128,8 +128,4 @@ export class HomePage {
         });
     });
   }
-  
-  returnZero() {
-    return 0;
-  }
 }
