@@ -57,6 +57,7 @@ export class HomePage {
 
     const { data } = await modal.onWillDismiss();
     this.selectedCategories = data["selectedCategories"];
+    this.selectedCategories = this.selectedCategories.sort();
   }
 
   public generatePassword() {
