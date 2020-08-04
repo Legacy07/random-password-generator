@@ -58,7 +58,8 @@
   "description": "Random Password Generator",
   "cordova": {
     "plugins": {
-      "cordova-plugin-x-socialsharing": {}
+      "cordova-plugin-x-socialsharing": {},
+      "cordova-clipboard": {}
     }
   }
 }
