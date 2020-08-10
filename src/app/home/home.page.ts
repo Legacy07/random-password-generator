@@ -110,7 +110,7 @@ export class HomePage {
         this.loggerService.info("Copied password to clipboard!");
       })
       .catch((res) => {
-        this.loggerService.error("Unable to copy to clipboard! " + res);
+        this.loggerService.error("Unable to copy to clipboard!");
       });
   }
 

@@ -80,6 +80,13 @@
   // --ion-font-family: 'Chilanka', cursive;
 }
 
+:root,
+:root[mode="md"] {
+  @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+  --ion-font-family: 'Lato', sans-serif;
+  font-family: var(--ion-font-family) !important;
+}
+
 @media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
