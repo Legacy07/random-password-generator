@@ -1,5 +1,5 @@
 {
-  "appId": "com.ahmet.password-generator-by-random-words",
+  "appId": "com.ahmet.passwordgeneratorbyrandomwords",
   "appName": "password-generator-by-random-words",
   "bundledWebRuntime": false,
   "npmClient": "npm",
