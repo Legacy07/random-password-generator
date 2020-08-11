@@ -129,4 +129,26 @@ export class HomePage {
         });
     });
   }
+
+  async showInformation() {
+    const alert = await this.alertController.create({
+      header: "Why?",
+      message:
+        "A short read on the reasons why you should be using random words rather than random characters from a Technical Director at National Cyber Security Centre.",
+      buttons: [
+        {
+          text: "Go To Link",
+          handler: () => {
+            window.open("https://www.ncsc.gov.uk/blog-post/three-random-words-or-thinkrandom-0",'_system', 'location=yes');
+          },
+        },
+        {
+          text: "Okay!",
+          role: "cancel",
+        },
+      ],
+    });
+
+    await alert.present();
+  }
 }
