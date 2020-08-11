@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ahmet.random-password-generator" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Random Password Generator</name>
+<widget id="com.ahmet.password-generator-by-random-words" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Password Generator by Random Words</name>
     <description>Generate passwords by randomising words based on your hobbies.</description>
     <author email="ahmetince771@gmail.com" href="http://ahmetince.co.uk/">Ahmet Ince</author>
     <content src="index.html" />

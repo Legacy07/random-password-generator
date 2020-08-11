@@ -1,5 +1,5 @@
 {
-  "name": "random-password-generator",
+  "name": "password-generator-by-random-words",
   "integrations": {
     "capacitor": {},
     "cordova": {}

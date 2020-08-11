@@ -1,5 +1,5 @@
 {
-  "name": "random-password-generator",
+  "name": "password-generator-by-random-words",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -56,7 +56,7 @@
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
   },
-  "description": "Random Password Generator",
+  "description": "Password Generator by Random Words",
   "cordova": {
     "plugins": {
       "cordova-plugin-x-socialsharing": {},
