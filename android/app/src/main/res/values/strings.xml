@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">random-password-generator</string>
-    <string name="title_activity_main">random-password-generator</string>
+    <string name="app_name">Password Generator By Random Words</string>
+    <string name="title_activity_main">Password Generator By Random Words</string>
     <string name="package_name">com.ahmet.random-password-generator</string>
     <string name="custom_url_scheme">com.ahmet.random-password-generator</string>
 </resources>
